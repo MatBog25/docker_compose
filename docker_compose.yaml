@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  #nazwa konkretnego kontenera
+  nazwa_serwisu:
+    #załadowanie konfiguracji z dockerfile
+    build: .
+    #podpinanie folderu data do data_ale_w_wolumenie jako wolumen
+    volumes:
+      - ./data:/app/data_ale_w_wolumenie 
+    #odpowiednik flagi -i jak wywolujemy w docker run
+    stdin_open: true
+    #odpowiednik flagi -t jak wywolujemy w docker run
+    tty: true
+    #ustawienie folder roboczego na /app
+    working_dir: /app
+
+
+#docker-compose -f docker_compose.yaml up --build -d    --- uruchomienie kontenera z tego composa   
+#docker-compose -f docker_compose.yaml down             --- wylaczenie tego composa
+#docker exec -it docker_compose-nazwa_serwisu-1 bash    --- uruchomienie konkretnego kontenera w bashu
